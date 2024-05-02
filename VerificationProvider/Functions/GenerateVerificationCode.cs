@@ -124,20 +124,35 @@ public class GenerateVerificationCode(ILogger<GenerateVerificationCode> logger, 
                     To = email,
                     Subject = $"Verification code {code}",
                     Body = $@"
-                        <html>
-                            <head>
-                                <meta charset='utf-8' />
-                                <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-                                <title>Verification Code</title>
-                            </head>
-                            <body>
-                                <div style='color: #191919;'>
-                                    <p>{code}</p>
-                                <div>
-                            </body>
-                        </html>
+                     <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <title>Verification Code</title>
+                        </head>
+                        <body>
+                            <div style='color: #191919; max-width: 500px'>
+                                <div style='background-color: #4F85F6; color: white; text-align: center; padding: 20px 0;'>
+                                    <h1 style='font-weight: 400;'>Verification Code</h1>
+                                </div>
+                                <div style='background-color: #f4f4f4; padding: 1rem 2rem;'>
+                                    <p>Dear user,</p>
+                                    <p>We received a request to sign in to your account using e-mail {email}. Please verify your account using this verification code:</p>
+                                    <p class='code' style='font-weight: 700; text-align:center; font-size: 48px; letter-spacing: 8px;'>
+                                        {code}
+                                    </p>
+                                    <div class='noreply' style='color: #191919; font-size: 11px;'>
+                                        <p>If you did not request this code, it is possible that someone else is trying to access the Silicon Account <span style='color: #0041cd;'>{email}</span>. This email can't receive replies. For more information, visit the Silicons Help Center.</p>
+                                    </div>
+                                </div>
+                                <div style='color: #191919; text-align:center; font-size: 11px;'>
+                                    <p>© Silicon, Sveavägen 1, SE-123 45 Stockholm, Sweden</p>
+                                </div> 
+                            </div>
+                        </body>
+                    </html>   
                     ",
-                    PlainText = $"Please verify your account using this code: {code}. If you "
+                    PlainText = $"Please verify your account using this verification code: {code}. If you did not request this code, it is possible that someone else is trying to access the Silicon Account {email}. This email can't receive replies. For more information, visit the Silicons Help Center. © Silicon, Sveavägen 1, SE-123 45 Stockholm, Sweden"
                 };
                 return request;
             }
