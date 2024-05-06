@@ -9,9 +9,9 @@ using VerificationProvider.Models;
 
 namespace VerificationProvider.Services;
 
-public class VerificationService(ILogger<GenerateVerificationCode> logger, IServiceProvider serviceProvider) : IVerificationService
+public class VerificationService(ILogger<VerificationService> logger, IServiceProvider serviceProvider) : IVerificationService
 {
-    private readonly ILogger<GenerateVerificationCode> _logger = logger;
+    private readonly ILogger<VerificationService> _logger = logger;
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
 
@@ -27,7 +27,7 @@ public class VerificationService(ILogger<GenerateVerificationCode> logger, IServ
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error :: UnpackVerificationRequest :: {ex.Message} ");
+            _logger.LogError($"Error :: VerificationService.UnpackVerificationRequest :: {ex.Message} ");
         }
         return null!;
     }
@@ -43,7 +43,7 @@ public class VerificationService(ILogger<GenerateVerificationCode> logger, IServ
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error :: GeneratedCode :: {ex.Message} ");
+            _logger.LogError($"Error :: VerificationService.GeneratedCode :: {ex.Message} ");
         }
         return null!;
     }
@@ -71,7 +71,7 @@ public class VerificationService(ILogger<GenerateVerificationCode> logger, IServ
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error :: SaveVerificationRequest :: {ex.Message} ");
+            _logger.LogError($"Error :: VerificationService.SaveVerificationRequest :: {ex.Message} ");
         }
         return false;
     }
@@ -122,7 +122,7 @@ public class VerificationService(ILogger<GenerateVerificationCode> logger, IServ
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error :: SaveVerificationRequest :: {ex.Message} ");
+            _logger.LogError($"Error :: VerificationService.SaveVerificationRequest :: {ex.Message} ");
         }
         return null!;
     }
@@ -140,7 +140,7 @@ public class VerificationService(ILogger<GenerateVerificationCode> logger, IServ
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error :: GenerateServiceBusMessage :: {ex.Message} ");
+            _logger.LogError($"Error :: VerificationService.GenerateServiceBusMessage :: {ex.Message} ");
         }
         return null!;
     }
