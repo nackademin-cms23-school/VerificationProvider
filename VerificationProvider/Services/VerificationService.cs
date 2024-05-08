@@ -1,4 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -28,6 +30,27 @@ public class VerificationService(ILogger<VerificationService> logger, IServicePr
         catch (Exception ex)
         {
             _logger.LogError($"Error :: VerificationService.UnpackVerificationRequest :: {ex.Message} ");
+        }
+        return null!;
+    }
+
+    public async Task<VerificationRequest> UnpackHttpVerificationRequest(HttpRequest req)
+    {
+        try
+        {
+            var body = await new StreamReader(req.Body).ReadToEndAsync();
+            if (!string.IsNullOrEmpty(body))
+            {
+                var verificationRequest = JsonConvert.DeserializeObject<VerificationRequest>(body);
+                if (verificationRequest != null)
+                {
+                    return verificationRequest;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error :: VerificationService.UnpackHttpVerificationRequest :: {ex.Message} ");
         }
         return null!;
     }
