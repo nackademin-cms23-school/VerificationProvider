@@ -40,4 +40,4 @@ jobs:
           app-name: 'VerificationProvider'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2BBCB58C22F54D9BB4AEDFB9D45A732F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4179E8DC5F1B46BA8B200C81D64B2C13 }}
