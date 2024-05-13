@@ -20,7 +20,7 @@ public class GenerateVerificationCodeUsingHttp(ILogger<GenerateVerificationCodeU
 
     [Function("GenerateVerificationCodeUsingHttp")]
     [ServiceBusOutput("verification_request", Connection = "ServiceBus")]
-    public async Task Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
+    public async Task Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req) 
     {
         try
         {
